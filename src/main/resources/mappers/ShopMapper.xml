@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java201913.huitao_zhanggezuoye.mapper.ShopMapper">
+  <resultMap id="BaseResultMap" type="org.java201913.huitao_zhanggezuoye.pojo.Shop">
+    <id column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="scode" jdbcType="VARCHAR" property="scode" />
+    <result column="sweight" jdbcType="DOUBLE" property="sweight" />
+    <result column="s_store_id" jdbcType="INTEGER" property="sStoreId" />
+    <result column="smaterial" jdbcType="VARCHAR" property="smaterial" />
+    <result column="saddtime" jdbcType="TIMESTAMP" property="saddtime" />
+    <result column="s_stcid" jdbcType="INTEGER" property="sStcid" />
+    <result column="sprice" jdbcType="DOUBLE" property="sprice" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sid, sname, scode, sweight, s_store_id, smaterial, saddtime, s_stcid, sprice
+  </sql>
+  <select id="selectByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.ShopExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shop
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shop
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.ShopExample">
+    delete from shop
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Shop">
+    insert into shop (sid, sname, scode, 
+      sweight, s_store_id, smaterial, 
+      saddtime, s_stcid, sprice
+      )
+    values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{scode,jdbcType=VARCHAR}, 
+      #{sweight,jdbcType=DOUBLE}, #{sStoreId,jdbcType=INTEGER}, #{smaterial,jdbcType=VARCHAR}, 
+      #{saddtime,jdbcType=TIMESTAMP}, #{sStcid,jdbcType=INTEGER}, #{sprice,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Shop">
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="sname != null">
+        sname,
+      </if>
+      <if test="scode != null">
+        scode,
+      </if>
+      <if test="sweight != null">
+        sweight,
+      </if>
+      <if test="sStoreId != null">
+        s_store_id,
+      </if>
+      <if test="smaterial != null">
+        smaterial,
+      </if>
+      <if test="saddtime != null">
+        saddtime,
+      </if>
+      <if test="sStcid != null">
+        s_stcid,
+      </if>
+      <if test="sprice != null">
+        sprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="scode != null">
+        #{scode,jdbcType=VARCHAR},
+      </if>
+      <if test="sweight != null">
+        #{sweight,jdbcType=DOUBLE},
+      </if>
+      <if test="sStoreId != null">
+        #{sStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="smaterial != null">
+        #{smaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="saddtime != null">
+        #{saddtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sStcid != null">
+        #{sStcid,jdbcType=INTEGER},
+      </if>
+      <if test="sprice != null">
+        #{sprice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.ShopExample" resultType="java.lang.Integer">
+    select count(*) from shop
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shop
+    <set>
+      <if test="record.sid != null">
+        sid = #{record.sid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sname != null">
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scode != null">
+        scode = #{record.scode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sweight != null">
+        sweight = #{record.sweight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.sStoreId != null">
+        s_store_id = #{record.sStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="record.smaterial != null">
+        smaterial = #{record.smaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saddtime != null">
+        saddtime = #{record.saddtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sStcid != null">
+        s_stcid = #{record.sStcid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sprice != null">
+        sprice = #{record.sprice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shop
+    set sid = #{record.sid,jdbcType=INTEGER},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      scode = #{record.scode,jdbcType=VARCHAR},
+      sweight = #{record.sweight,jdbcType=DOUBLE},
+      s_store_id = #{record.sStoreId,jdbcType=INTEGER},
+      smaterial = #{record.smaterial,jdbcType=VARCHAR},
+      saddtime = #{record.saddtime,jdbcType=TIMESTAMP},
+      s_stcid = #{record.sStcid,jdbcType=INTEGER},
+      sprice = #{record.sprice,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Shop">
+    update shop
+    <set>
+      <if test="sname != null">
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="scode != null">
+        scode = #{scode,jdbcType=VARCHAR},
+      </if>
+      <if test="sweight != null">
+        sweight = #{sweight,jdbcType=DOUBLE},
+      </if>
+      <if test="sStoreId != null">
+        s_store_id = #{sStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="smaterial != null">
+        smaterial = #{smaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="saddtime != null">
+        saddtime = #{saddtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sStcid != null">
+        s_stcid = #{sStcid,jdbcType=INTEGER},
+      </if>
+      <if test="sprice != null">
+        sprice = #{sprice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Shop">
+    update shop
+    set sname = #{sname,jdbcType=VARCHAR},
+      scode = #{scode,jdbcType=VARCHAR},
+      sweight = #{sweight,jdbcType=DOUBLE},
+      s_store_id = #{sStoreId,jdbcType=INTEGER},
+      smaterial = #{smaterial,jdbcType=VARCHAR},
+      saddtime = #{saddtime,jdbcType=TIMESTAMP},
+      s_stcid = #{sStcid,jdbcType=INTEGER},
+      sprice = #{sprice,jdbcType=DOUBLE}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="org.java201913.huitao_zhanggezuoye.pojo.ShopExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shop
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,56 @@
+#端口号配置.springboot 自带有tomcat，此处端口号是自带tomcat使用的
+server:
+  port: 8081
+#spring配置
+spring:
+  #mvc视图解析器，解析jsp页面
+  mvc:
+    view:
+      prefix: / #设置jsp所在文件
+      suffix: .jsp   #文件后缀
+  #定义数据源:jdbc连接信息
+  datasource:
+     #jdbc驱动类
+     driver-class-name: com.mysql.jdbc.Driver
+     #jdbc连接路径
+     url: jdbc:mysql://localhost:3306/huitao?characterEncoding=UTF-8
+     #jdbc连接用户名
+     username: root
+      #jdbc连接密码
+     password: 123456
+ #Druid配置
+  druid:
+     #初始化连接数 设置连接池中初始的有多少个数据库连接
+     initial-size: 5
+     #最大连接数 如果初始的不够用了 会立即创建 最多创建到20个，设连接池上限
+     max-active: 20
+     #最小连接数，设置连接池最低保障连接数，最小连接数是永远不会销毁的，超过最小连接的部分会超时销毁
+     min-idle: 5
+     #最大等待时间,一次连接响应时间，查过改时间失败
+     max-wait: 6000
+     #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+     time-between-eviction-runs-millis:  60000
+     #配置一个连接在池中最小生存的时间，单位是毫秒  空闲状态多久后销毁
+     min-evictable-idle-time-millis: 300000
+     validation-query: select 'x'
+     test-while-idle: true
+     test-on-borrow: false
+     test-on-return: false
+     # 打开PSCache，并且指定每个连接上PSCache的大小
+     pool-prepared-statements: true
+     max-pool-prepared-statement-per-connection-size: 20
+     # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+     filters: stat,wall,slf4j
+     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+     connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+     #useGlobalDataSourceStat: true # 合并多个DruidDataSource的监控数据
+     
+#mybatis配置
+mybatis:
+  #配置mapper映射位置 classpath=src/main/resources
+  mapper-locations: classpath:mappers/*.xml
+  #配置实体类别名
+  type-aliases-package: org.java201913.huitao_zhanggezuoye.pojo
+logging:
+  config: classpath:log4j2.xml
+  

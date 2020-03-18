@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+  <Appenders>
+    <!-- 定义日志输出格式 -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %l %msg%n"/>
+    </Console>
+  </Appenders>
+  
+  <Loggers>
+    <!-- 定义日志输出等级  error【默认】/debug【详细信息，包含加载过程】-->
+    <Root level="error">
+      <AppenderRef ref="Console"/>
+    </Root>
+    <!-- 定义日志管理的包路径，更具项目来决定-->
+    <Logger name="org.java201913.huitao_zhanggezuoye" level="DEBUG" additivity="false">
+      <AppenderRef ref="Console"/>
+    </Logger>
+  </Loggers>
+</Configuration>

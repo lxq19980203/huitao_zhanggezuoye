@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java201913.huitao_zhanggezuoye.mapper.CheckMapper">
+  <resultMap id="BaseResultMap" type="org.java201913.huitao_zhanggezuoye.pojo.Check">
+    <id column="chid" jdbcType="INTEGER" property="chid" />
+    <result column="chcode" jdbcType="VARCHAR" property="chcode" />
+    <result column="ch_sid" jdbcType="INTEGER" property="chSid" />
+    <result column="chnum" jdbcType="INTEGER" property="chnum" />
+    <result column="ch_usid" jdbcType="INTEGER" property="chUsid" />
+    <result column="chsize" jdbcType="INTEGER" property="chsize" />
+    <result column="chaddtime" jdbcType="TIMESTAMP" property="chaddtime" />
+    <result column="chtype" jdbcType="INTEGER" property="chtype" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    chid, chcode, ch_sid, chnum, ch_usid, chsize, chaddtime, chtype, address
+  </sql>
+  <select id="selectByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.CheckExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from check
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from check
+    where chid = #{chid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from check
+    where chid = #{chid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.CheckExample">
+    delete from check
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Check">
+    insert into check (chid, chcode, ch_sid, 
+      chnum, ch_usid, chsize, 
+      chaddtime, chtype, address
+      )
+    values (#{chid,jdbcType=INTEGER}, #{chcode,jdbcType=VARCHAR}, #{chSid,jdbcType=INTEGER}, 
+      #{chnum,jdbcType=INTEGER}, #{chUsid,jdbcType=INTEGER}, #{chsize,jdbcType=INTEGER}, 
+      #{chaddtime,jdbcType=TIMESTAMP}, #{chtype,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Check">
+    insert into check
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chid != null">
+        chid,
+      </if>
+      <if test="chcode != null">
+        chcode,
+      </if>
+      <if test="chSid != null">
+        ch_sid,
+      </if>
+      <if test="chnum != null">
+        chnum,
+      </if>
+      <if test="chUsid != null">
+        ch_usid,
+      </if>
+      <if test="chsize != null">
+        chsize,
+      </if>
+      <if test="chaddtime != null">
+        chaddtime,
+      </if>
+      <if test="chtype != null">
+        chtype,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chid != null">
+        #{chid,jdbcType=INTEGER},
+      </if>
+      <if test="chcode != null">
+        #{chcode,jdbcType=VARCHAR},
+      </if>
+      <if test="chSid != null">
+        #{chSid,jdbcType=INTEGER},
+      </if>
+      <if test="chnum != null">
+        #{chnum,jdbcType=INTEGER},
+      </if>
+      <if test="chUsid != null">
+        #{chUsid,jdbcType=INTEGER},
+      </if>
+      <if test="chsize != null">
+        #{chsize,jdbcType=INTEGER},
+      </if>
+      <if test="chaddtime != null">
+        #{chaddtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chtype != null">
+        #{chtype,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.CheckExample" resultType="java.lang.Integer">
+    select count(*) from check
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update check
+    <set>
+      <if test="record.chid != null">
+        chid = #{record.chid,jdbcType=INTEGER},
+      </if>
+      <if test="record.chcode != null">
+        chcode = #{record.chcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chSid != null">
+        ch_sid = #{record.chSid,jdbcType=INTEGER},
+      </if>
+      <if test="record.chnum != null">
+        chnum = #{record.chnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.chUsid != null">
+        ch_usid = #{record.chUsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.chsize != null">
+        chsize = #{record.chsize,jdbcType=INTEGER},
+      </if>
+      <if test="record.chaddtime != null">
+        chaddtime = #{record.chaddtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.chtype != null">
+        chtype = #{record.chtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update check
+    set chid = #{record.chid,jdbcType=INTEGER},
+      chcode = #{record.chcode,jdbcType=VARCHAR},
+      ch_sid = #{record.chSid,jdbcType=INTEGER},
+      chnum = #{record.chnum,jdbcType=INTEGER},
+      ch_usid = #{record.chUsid,jdbcType=INTEGER},
+      chsize = #{record.chsize,jdbcType=INTEGER},
+      chaddtime = #{record.chaddtime,jdbcType=TIMESTAMP},
+      chtype = #{record.chtype,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Check">
+    update check
+    <set>
+      <if test="chcode != null">
+        chcode = #{chcode,jdbcType=VARCHAR},
+      </if>
+      <if test="chSid != null">
+        ch_sid = #{chSid,jdbcType=INTEGER},
+      </if>
+      <if test="chnum != null">
+        chnum = #{chnum,jdbcType=INTEGER},
+      </if>
+      <if test="chUsid != null">
+        ch_usid = #{chUsid,jdbcType=INTEGER},
+      </if>
+      <if test="chsize != null">
+        chsize = #{chsize,jdbcType=INTEGER},
+      </if>
+      <if test="chaddtime != null">
+        chaddtime = #{chaddtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chtype != null">
+        chtype = #{chtype,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where chid = #{chid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Check">
+    update check
+    set chcode = #{chcode,jdbcType=VARCHAR},
+      ch_sid = #{chSid,jdbcType=INTEGER},
+      chnum = #{chnum,jdbcType=INTEGER},
+      ch_usid = #{chUsid,jdbcType=INTEGER},
+      chsize = #{chsize,jdbcType=INTEGER},
+      chaddtime = #{chaddtime,jdbcType=TIMESTAMP},
+      chtype = #{chtype,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR}
+    where chid = #{chid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="org.java201913.huitao_zhanggezuoye.pojo.CheckExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from check
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

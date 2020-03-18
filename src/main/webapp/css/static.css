@@ -1,0 +1,33 @@
+.top{
+	background-color: white;
+	padding: 0px 30px;
+	border-bottom: 1px solid grey;
+	box-shadow: 0px 1px 5px grey;
+}
+.top img{
+	width: 140px;
+	height: 80px;
+}
+.top .text{
+	line-height: 80px;
+	font-weight: bold;
+	font-size: 17px;
+}
+.center{
+	padding: 50px 30px;
+	background-image: url(../img/bg.jpeg);
+	background-position: center;
+	
+}
+.center .login{
+	background-color: white;
+	border-radius: 15px;
+	min-height: 300px;
+	padding-top:50px;
+	padding-bottom:50px;
+	box-shadow: 0px 0px 5px gray;
+	
+}
+.center .input-div{
+	padding-top: 30px;
+}

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java201913.huitao_zhanggezuoye.mapper.StoreupMapper">
+  <resultMap id="BaseResultMap" type="org.java201913.huitao_zhanggezuoye.pojo.Storeup">
+    <id column="coid" jdbcType="INTEGER" property="coid" />
+    <result column="co_sid" jdbcType="INTEGER" property="coSid" />
+    <result column="co_usid" jdbcType="INTEGER" property="coUsid" />
+    <result column="coaddtime" jdbcType="TIMESTAMP" property="coaddtime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    coid, co_sid, co_usid, coaddtime
+  </sql>
+  <select id="selectByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.StoreupExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from storeup
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from storeup
+    where coid = #{coid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from storeup
+    where coid = #{coid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.StoreupExample">
+    delete from storeup
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Storeup">
+    insert into storeup (coid, co_sid, co_usid, 
+      coaddtime)
+    values (#{coid,jdbcType=INTEGER}, #{coSid,jdbcType=INTEGER}, #{coUsid,jdbcType=INTEGER}, 
+      #{coaddtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Storeup">
+    insert into storeup
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coid != null">
+        coid,
+      </if>
+      <if test="coSid != null">
+        co_sid,
+      </if>
+      <if test="coUsid != null">
+        co_usid,
+      </if>
+      <if test="coaddtime != null">
+        coaddtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coid != null">
+        #{coid,jdbcType=INTEGER},
+      </if>
+      <if test="coSid != null">
+        #{coSid,jdbcType=INTEGER},
+      </if>
+      <if test="coUsid != null">
+        #{coUsid,jdbcType=INTEGER},
+      </if>
+      <if test="coaddtime != null">
+        #{coaddtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.java201913.huitao_zhanggezuoye.pojo.StoreupExample" resultType="java.lang.Integer">
+    select count(*) from storeup
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update storeup
+    <set>
+      <if test="record.coid != null">
+        coid = #{record.coid,jdbcType=INTEGER},
+      </if>
+      <if test="record.coSid != null">
+        co_sid = #{record.coSid,jdbcType=INTEGER},
+      </if>
+      <if test="record.coUsid != null">
+        co_usid = #{record.coUsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.coaddtime != null">
+        coaddtime = #{record.coaddtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update storeup
+    set coid = #{record.coid,jdbcType=INTEGER},
+      co_sid = #{record.coSid,jdbcType=INTEGER},
+      co_usid = #{record.coUsid,jdbcType=INTEGER},
+      coaddtime = #{record.coaddtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Storeup">
+    update storeup
+    <set>
+      <if test="coSid != null">
+        co_sid = #{coSid,jdbcType=INTEGER},
+      </if>
+      <if test="coUsid != null">
+        co_usid = #{coUsid,jdbcType=INTEGER},
+      </if>
+      <if test="coaddtime != null">
+        coaddtime = #{coaddtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where coid = #{coid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java201913.huitao_zhanggezuoye.pojo.Storeup">
+    update storeup
+    set co_sid = #{coSid,jdbcType=INTEGER},
+      co_usid = #{coUsid,jdbcType=INTEGER},
+      coaddtime = #{coaddtime,jdbcType=TIMESTAMP}
+    where coid = #{coid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="org.java201913.huitao_zhanggezuoye.pojo.StoreupExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from storeup
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
