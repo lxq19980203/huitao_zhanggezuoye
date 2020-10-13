@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13.1</version>
 		</dependency>
 		<!-- springbootweb依赖 ,自带tomcat，不需要在用本地安装的 -->
 		<dependency>
