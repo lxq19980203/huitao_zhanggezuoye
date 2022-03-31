@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.1.3.RELEASE</version>
+			<version>2.5.12</version>
 		</dependency>
 		
 		<!-- jsp 作为视图，将jsp视图依赖加入，如果不是jsp视图此处可以不要 -->
